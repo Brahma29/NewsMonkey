@@ -35,6 +35,7 @@ const News =(props)=> {
 
   useEffect(() => {
     updateNews();
+    // eslint-disable-next-line
   }, [])
 
   // const handleNextClick = async () => {
@@ -50,7 +51,7 @@ const News =(props)=> {
   const fetchMoreData = async() => {
     
     setPage(page + 1)
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=d6f9ba1b5bc440f68b5f29f9bea5836a&page=${page}&pageSize=${props.pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=d6f9ba1b5bc440f68b5f29f9bea5836a&page=${page + 1}&pageSize=${props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
@@ -60,7 +61,7 @@ const News =(props)=> {
   };
     return (
       <div className="container my-3">
-        <h2 className="text-center" style={{ margin: "35px 0px" }}>
+        <h2 className="text-center" style={{ margin: "35px 0px", marginTop: "90px" }}>
           NewsMonkey -Top Headlines from {capitalizeFirstLetter(props.category)} category
         </h2>
         {loading && <Spinner />}
